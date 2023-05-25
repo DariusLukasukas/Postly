@@ -80,7 +80,7 @@ export default function SignUp({ open, setOpen, button }: SignUpProps) {
           </button>
         </DialogTrigger>
       )}
-      <DialogContent>
+      <DialogContent className="dark:bg-neutral-800">
         <DialogHeader>
           <DialogTitle className="flex w-full flex-col items-center gap-2 py-4">
             <div className="text-xl">Create an account</div>

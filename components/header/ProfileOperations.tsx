@@ -18,7 +18,7 @@ export default function ProfileOperations() {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger className="group relative flex h-5 w-5 items-center justify-center">
-          <MoreHorizontal className="h-5 w-5 text-black" />
+          <MoreHorizontal className="h-5 w-5 text-black dark:invert" />
           <HoverCard label="Settings" />
         </DropdownMenuTrigger>
         <DropdownMenuContent

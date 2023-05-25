@@ -13,15 +13,37 @@ export default function Sidebar({ session }: any) {
   const isAuthenticated = session ? true : false;
 
   const navigation = [
-    { label: "Home", icon: HomeIcon, href: "/", authRequired: false },
-    { label: "Search ⌘K", icon: SearchIcon, authRequired: false },
-    { label: "Notifications", icon: BellIcon, authRequired: true },
-    { label: "Replies", icon: LetterIcon, authRequired: true },
+    {
+      label: "Home",
+      icon: HomeIcon,
+      href: "/",
+      authRequired: false,
+      available: true,
+    },
+    {
+      label: "Search ⌘K",
+      icon: SearchIcon,
+      authRequired: false,
+      available: false,
+    },
+    {
+      label: "Notifications",
+      icon: BellIcon,
+      authRequired: true,
+      available: false,
+    },
+    {
+      label: "Replies",
+      icon: LetterIcon,
+      authRequired: true,
+      available: false,
+    },
     {
       label: "Profile",
       icon: UserIcon,
       href: `/user/${session?.user.id}`,
       authRequired: true,
+      available: true,
     },
   ];
 
@@ -35,6 +57,7 @@ export default function Sidebar({ session }: any) {
               Icon={item.icon}
               label={item.label}
               href={item.href}
+              available={item.available}
             />
           );
         }

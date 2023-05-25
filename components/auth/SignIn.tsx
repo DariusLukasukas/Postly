@@ -64,7 +64,7 @@ export default function SignIn({ open, setOpen, button }: SignInProps) {
           </button>
         </DialogTrigger>
       )}
-      <DialogContent>
+      <DialogContent className="dark:bg-neutral-800">
         <DialogHeader>
           <DialogTitle className="flex w-full flex-col items-center gap-2 py-4">
             <div className="text-xl">Welcome back 👋</div>

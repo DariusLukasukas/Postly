@@ -26,7 +26,7 @@ export default function SignInOrRegister() {
             onClick={handleSignInOpen}
             size={"sm"}
             variant={"secondary"}
-            className="rounded-full"
+            className="rounded-full dark:bg-neutral-950"
           >
             Sign in
           </Button>
