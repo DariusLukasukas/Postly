@@ -1,5 +1,3 @@
-import { cache } from "react";
-
 export const fetchUser = async (userId: string) => {
   const response = await fetch(`http://localhost:3000/api/users/${userId}`);
 

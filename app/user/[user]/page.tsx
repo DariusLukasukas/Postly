@@ -26,7 +26,8 @@ export default async function UserPage({
     <>
       <Header label={"@" + user.username} showBackButton={true} />
       {!session && <SignInOrRegister />}
-      <UserHero profileImage={user.profileImage} coverImage={user.coverImage} />
+      {/* @ts-expect-error Async Server Component */}
+      <UserHero userId={user.id} />
       {/* @ts-expect-error Async Server Component */}
       <UserBio userId={params.user} />
       <Suspense fallback={<PostFeedSkeleton listsToRender={4} />}>

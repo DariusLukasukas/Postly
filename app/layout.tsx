@@ -23,8 +23,8 @@ export default async function RootLayout({
   const session = await getServerSession(authOptions);
 
   return (
-    <html lang="en" suppressHydrationWarning className={inter.className}>
-      <body className="relative h-screen overflow-hidden">
+    <html lang="en" className={inter.className}>
+      <body className="relative h-screen overflow-hidden dark:bg-neutral-800">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="scroll relative h-screen">
             <div className="container mx-auto max-w-3xl">

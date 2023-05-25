@@ -59,7 +59,6 @@ export default async function UserBio({ userId }: UserBioProps) {
         <div className="mt-2 flex flex-col text-sm">
           <div>{fetchedUser.bio}</div>
           <div className="mt-2 flex flex-row items-center gap-2 text-neutral-500">
-            {/* <CalendarDays size={16} className="shrink-0" /> */}
             <CalendarIcon className="h-5 w-5" />
             <div className="text-sm font-light">Joined {userCreatedAt}</div>
           </div>

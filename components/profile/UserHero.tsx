@@ -1,18 +1,20 @@
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useUser } from "@/actions/useUser";
 
-interface UserHeroProps {
-  profileImage?: string;
-  coverImage?: string;
+interface UserHeroProps2 {
+  userId: string;
 }
 
-export default function UserHero({ profileImage, coverImage }: UserHeroProps) {
+export default async function UserHero({ userId }: UserHeroProps2) {
+  const user = await useUser(userId);
+
   return (
     <>
       <div className="relative z-20 h-36 rounded-lg bg-orange-400">
-        {coverImage && (
+        {user.coverImage && (
           <Image
-            src={coverImage}
+            src={user.coverImage}
             fill
             alt="Cover Image"
             style={{ objectFit: "cover" }}
@@ -20,8 +22,14 @@ export default function UserHero({ profileImage, coverImage }: UserHeroProps) {
         )}
       </div>
       <Avatar className="absolute z-30 -mt-14 ml-4 h-[100px] w-[100px] border-4 border-black">
-        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-        <AvatarFallback>CN</AvatarFallback>
+        <AvatarImage
+          src={user?.profileImage || "/images/placeholder.png"}
+          alt="Profile"
+          className="bg-white dark:bg-black"
+        />
+        <AvatarFallback className="bg-white text-black dark:invert">
+          {user.name[0]}
+        </AvatarFallback>
       </Avatar>
     </>
   );

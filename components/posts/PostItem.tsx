@@ -64,17 +64,19 @@ export default function PostItem({ data, session }: any) {
   return (
     <div
       onClick={handlePostClick}
-      className="w-full cursor-pointer rounded-lg border-b-[1px] border-neutral-100 px-4 pb-4 pt-6 transition hover:bg-neutral-50 dark:border-neutral-700"
+      className="w-full cursor-pointer rounded-lg border-b-[1px] border-neutral-100 px-4 pb-4 pt-6 transition hover:bg-neutral-50 dark:border-neutral-700 dark:hover:bg-neutral-800"
     >
       <div className="flex flex-row items-start gap-4">
         {/* <Avatar userId={data.user.id} src={data.user.profileImage} /> */}
         <Avatar className="h-12 w-12">
           <AvatarImage
-            src="https://github.com/shadcn.png"
-            alt="@shadcn"
+            src={data.user.profileImage || "/images/placeholder.png"}
+            alt={data.user.name + "profile"}
             placeholder="blur"
           />
-          <AvatarFallback>CN</AvatarFallback>
+          <AvatarFallback className="bg-white text-black dark:invert">
+            {data.user.name[0]}
+          </AvatarFallback>
         </Avatar>
 
         <div className="flex w-full flex-col">

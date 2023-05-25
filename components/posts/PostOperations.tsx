@@ -24,7 +24,7 @@ export default function PostOperations(props: {
         </DropdownMenuTrigger>
         <DropdownMenuContent
           align="start"
-          className="bg-white shadow-lg dark:bg-neutral-700"
+          className="bg-white shadow-lg dark:bg-neutral-700 dark:shadow-neutral-700"
         >
           {isCurrentUserPost && (
             <DropdownMenuItem
