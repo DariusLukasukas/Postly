@@ -1,36 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Project Description
 
-## Getting Started
+Welcome to Postly Github repository, where I've built a microblogging platform reminiscent of Twitter, but with a unique spin. While platform doesn't yet encompass all the features of Twitter, it certainly aspires to!
 
-First, run the development server:
+In the current version, users are equipped with several functions:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+- Creating and deleting posts.
+- Registering as a new user.
+- Modifying their user profile, which includes changes to the name, bio, username, and cover image.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This platform serves as a great learning experience, and through its evolution, I intend to incorporate the following features:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [x] **Authentication system:** To ensure user safety and privacy, we'll be introducing a secure sign-in system.
+- [ ] **Notification system:** Users will be notified about the interactions they receive, keeping them connected and informed.
+- [x] **Image Upload using Base64 strings:** We'll implement a method for users to express themselves more fully through images.
+- [x] **Prisma ORM with MongoDB:** To manage our database, we'll be using Prisma ORM in combination with MongoDB.
+- [x] **Responsive Layout:** A user-friendly interface that adapts smoothly to any device or screen size.
+- [ ] **1 To Many Relations (User - Post):** Each user will be able to create multiple posts, facilitating an engaging content experience.
+- [ ] **Many To Many Relations (Post - Comment):** Each post can host multiple comments, and a single comment can refer to multiple posts, fostering a dynamic conversation environment.
+- [x] **Following functionality:** Users will have the ability to follow others, cultivating a personalized content feed.
+- [ ] **Comments / Replies:** Users can interact with posts via comments or replies, promoting a lively dialogue.
+- [ ] **Likes functionality:** To provide instant feedback, users can 'like' posts and comments.
+- [ ] **Vercel Deployment:** The platform will be hosted on Vercel for easy access and enhanced user experience.
 
-[http://localhost:3000/api/hello](http://localhost:3000/api/hello) is an endpoint that uses [Route Handlers](https://beta.nextjs.org/docs/routing/route-handlers). This endpoint can be edited in `app/api/hello/route.ts`.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Stay tuned for these upcoming features as I continue developing this exciting project!
