@@ -7,8 +7,8 @@ Welcome to Postly Github repository, where I've built a microblogging platform r
 In the current version, users are equipped with several functions:
 
 - Creating and deleting posts.
-- Registering as a new user.
-- Modifying their user profile, which includes changes to the name, bio, username, and cover image.
+- Sign in & registering as a new user.
+- Modifying their user profile, which includes changes to the name, bio, username, avatar and cover image.
 
 This platform serves as a great learning experience, and through its evolution, I intend to incorporate the following features:
 
