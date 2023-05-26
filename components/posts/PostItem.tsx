@@ -22,8 +22,28 @@ export default function PostItem({ data, session }: any) {
     [userId, data.userId]
   );
 
+  const handleAvatarClick = useCallback(
+    (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+      event.stopPropagation();
+      if (isCurrentUserPost) {
+        // Handle click for current user avatar
+        // Perform a different action if needed
+        console.log("Clicked on current user's avatar");
+      } else {
+        const userId = data.user.id;
+        if (userId) {
+          console.log(userId);
+          //   router.push(`/user/${userId}`);
+        } else {
+          console.log("User ID is undefined or not accessible");
+        }
+      }
+    },
+    [data, isCurrentUserPost]
+  );
+
   const handlePostClick = useCallback(
-    (event: any) => {
+    (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
       event.stopPropagation();
       if (data && data.user) {
         router.push(`/post/${data.id}`);
@@ -33,7 +53,7 @@ export default function PostItem({ data, session }: any) {
   );
 
   const handleLikeClick = useCallback(
-    async (event: any) => {
+    async (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
       event.stopPropagation();
 
       if (!session) {
@@ -67,16 +87,12 @@ export default function PostItem({ data, session }: any) {
       className="w-full cursor-pointer rounded-lg border-b-[1px] border-neutral-100 px-4 pb-4 pt-6 transition hover:bg-neutral-50 dark:border-neutral-700 dark:hover:bg-neutral-800"
     >
       <div className="flex flex-row items-start gap-4">
-        {/* <Avatar userId={data.user.id} src={data.user.profileImage} /> */}
-        <Avatar className="h-12 w-12">
+        <Avatar className="h-12 w-12" onClick={handleAvatarClick}>
           <AvatarImage
             src={data.user.profileImage || "/images/placeholder.png"}
             alt={data.user.name + "profile"}
             placeholder="blur"
           />
-          <AvatarFallback className="bg-white text-black dark:invert">
-            {data.user.name[0]}
-          </AvatarFallback>
         </Avatar>
 
         <div className="flex w-full flex-col">
@@ -107,7 +123,7 @@ export default function PostItem({ data, session }: any) {
               <ReTweet className="h-5 w-5 text-neutral-500" />
             </button>
             <button
-              onClick={handleLikeClick}
+              //   onClick={handleLikeClick}
               className="flex cursor-pointer flex-row items-center gap-2 transition hover:text-red-500"
             >
               <HeartIcon className="h-5 w-5 text-neutral-500" />

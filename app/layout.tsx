@@ -27,9 +27,9 @@ export default async function RootLayout({
       <body className="relative h-screen overflow-hidden dark:bg-neutral-800">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="scroll relative h-screen">
-            <div className="container mx-auto max-w-3xl">
+            <div className="container mx-auto max-w-2xl">
               <ToasterToggle />
-              <div className="relative grid max-w-3xl grid-cols-12">
+              <div className="relative grid max-w-2xl grid-cols-12">
                 <div className="sticky left-0 top-0 z-20 hidden h-screen md:col-span-1 md:flex">
                   <Sidebar session={session} />
                 </div>

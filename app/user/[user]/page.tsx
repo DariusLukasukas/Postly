@@ -22,6 +22,8 @@ export default async function UserPage({
   const user = await useUser(params.user);
   const session = await getServerSession(authOptions);
 
+  console.log(user);
+
   return (
     <>
       <Header label={"@" + user.username} showBackButton={true} />

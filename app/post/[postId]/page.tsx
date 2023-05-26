@@ -6,6 +6,7 @@ import { Suspense } from "react";
 import PostFeedSkeleton from "@/components/posts/PostFeedSkeleton";
 import PostForm from "@/components/posts/PostForm";
 import Header from "@/components/header/Header";
+import useCurrentUser from "@/actions/useCurrentUser";
 
 export default async function PostPage({
   params,
@@ -14,15 +15,22 @@ export default async function PostPage({
 }) {
   const postData = await getPost(params.postId);
   const sessionData = await getServerSession(authOptions);
+  const user = await useCurrentUser();
 
   const [post, session] = await Promise.all([postData, sessionData]);
+  console.log(sessionData);
   return (
     <>
       <Header label="Thread" showBackButton={true} />
       <Suspense fallback={<PostFeedSkeleton listsToRender={3} />}>
         <PostItem data={post} session={session} />
       </Suspense>
-      {session && <PostForm placeholder="Leave a reply..." />}
+      {session && (
+        <PostForm
+          placeholder="Leave a reply..."
+          profileImage={user?.profileImage}
+        />
+      )}
     </>
   );
 }

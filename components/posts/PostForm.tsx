@@ -10,8 +10,9 @@ import AddImageIcon from "../ui/icons/AddImageIcon";
 
 interface PostFormProps {
   placeholder: string;
+  profileImage: string | null | undefined;
 }
-export default function PostForm({ placeholder }: PostFormProps) {
+export default function PostForm({ placeholder, profileImage }: PostFormProps) {
   const router = useRouter();
   const [message, setMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
@@ -48,14 +49,12 @@ export default function PostForm({ placeholder }: PostFormProps) {
         <div>
           <Avatar className="h-12 w-12">
             <AvatarImage
-              src="https://github.com/shadcn.png"
-              alt="@shadcn"
+              src={profileImage || "/images/placeholder.png"}
+              alt="Profile Image"
               placeholder="blur"
             />
-            <AvatarFallback>CN</AvatarFallback>
           </Avatar>
         </div>
-        {/* <div><Avatar userId={userId} src={src} /></div> */}
         <div className="w-full">
           <form onSubmit={handleSubmit}>
             <Textarea
