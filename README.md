@@ -1,5 +1,7 @@
 # Project Description
 
+![image](https://github.com/DariusLukasukas/Postly/assets/64962012/122f7fb7-1b2b-4d96-b5c3-a5ff16199939)
+
 Welcome to Postly Github repository, where I've built a microblogging platform reminiscent of Twitter, but with a unique spin. While platform doesn't yet encompass all the features of Twitter, it certainly aspires to!
 
 In the current version, users are equipped with several functions:
