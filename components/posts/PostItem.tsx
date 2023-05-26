@@ -26,20 +26,17 @@ export default function PostItem({ data, session }: any) {
     (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
       event.stopPropagation();
       if (isCurrentUserPost) {
-        // Handle click for current user avatar
-        // Perform a different action if needed
-        console.log("Clicked on current user's avatar");
+        router.push("/user/" + data.userId);
       } else {
         const userId = data.user.id;
         if (userId) {
-          console.log(userId);
-          //   router.push(`/user/${userId}`);
+          router.push(`/user/${userId}`);
         } else {
           console.log("User ID is undefined or not accessible");
         }
       }
     },
-    [data, isCurrentUserPost]
+    [data, router, isCurrentUserPost]
   );
 
   const handlePostClick = useCallback(

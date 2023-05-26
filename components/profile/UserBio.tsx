@@ -43,7 +43,7 @@ export default async function UserBio({ userId }: UserBioProps) {
         {currentUser && currentUser?.id !== userId && (
           <FollowButton
             currentUserId={currentUser.id}
-            userIdToFollow={fetchedUser.user.id}
+            userIdToFollow={fetchedUser.id}
             followingIds={currentUser.followingIds || []}
           />
         )}
