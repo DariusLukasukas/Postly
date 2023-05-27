@@ -1,62 +1,38 @@
 "use client";
 
-import { Bell, Home, Mail, User } from "lucide-react";
 import Link from "next/link";
-import TweetButton from "../sidebar/TweetButton";
-import TweetButtonMobile from "./TweetButtonMobile";
+import { navigation } from "@/lib/navigation";
 
 export default function MobileNav({ session }: any) {
   const isAuthenticated = session ? true : false;
 
-  const mobileNavigation = [
-    {
-      label: "Home",
-      icon: Home,
-      href: "/",
-      authRequired: false,
-      disabled: false,
-    },
-    {
-      label: "Notifications",
-      icon: Bell,
-      href: "/notifications",
-      authRequired: true,
-      disabled: true,
-    },
-    {
-      label: "Messages",
-      icon: Mail,
-      href: "/messages",
-      authRequired: true,
-      disabled: true,
-    },
-    {
-      label: "Profile",
-      icon: User,
-      href: `/user/${session?.user.id}`,
-      authRequired: true,
-      disabled: false,
-    },
-  ];
   return (
     <>
-      <TweetButtonMobile />
-      <div className="fixed bottom-0 left-0 right-0 flex flex-row items-center justify-between bg-orange-400 px-4 py-1 md:hidden">
-        {mobileNavigation.map((item, i) => {
-          if (!item.authRequired || isAuthenticated) {
-            return (
+      <div className="fixed bottom-0 left-0 right-0 z-50 flex flex-row items-center justify-between border-t-[1px] border-neutral-700 bg-white px-4 py-1 dark:bg-neutral-800 md:hidden">
+        {navigation.map((item, i) => (
+          <div
+            key={i}
+            className={`${
+              item.available ? "" : "pointer-events-none cursor-not-allowed"
+            } disabled flex cursor-pointer items-center justify-center gap-2 rounded-full p-2 text-sm font-semibold text-black hover:bg-black hover:bg-opacity-10`}
+          >
+            {!item.authRequired || isAuthenticated ? (
               <Link
-                key={i}
-                href={item.href}
-                className={`${
-                  item.disabled ? "pointer-events-none cursor-not-allowed" : ""
-                } disabled flex cursor-pointer items-center justify-center gap-2 rounded-full p-3 text-sm font-semibold text-black hover:bg-black hover:bg-opacity-10`}
+                href={
+                  item.label === "Profile" && isAuthenticated
+                    ? `/user/${session?.user.id}`
+                    : item.href
+                }
               >
-                <item.icon size={24} />
+                <item.icon className="h-6 w-6 text-black dark:invert" />
               </Link>
-            );
-          }
-        })}
+            ) : (
+              <div>
+                <item.icon className="h-6 w-6 text-black dark:invert" />
+              </div>
+            )}
+          </div>
+        ))}
       </div>
     </>
   );
