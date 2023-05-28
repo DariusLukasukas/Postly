@@ -81,7 +81,7 @@ export default function PostItem({ data, session }: any) {
   return (
     <div
       onClick={handlePostClick}
-      className="w-full cursor-pointer rounded-lg border-b-[1px] border-neutral-100 px-4 pb-4 pt-6 transition hover:bg-neutral-50 dark:border-neutral-700 dark:hover:bg-neutral-800"
+      className="w-full cursor-pointer border-b-[1px] border-neutral-100 px-4 pb-4 pt-6 transition hover:bg-neutral-50 dark:border-neutral-700 dark:hover:bg-neutral-800"
     >
       <div className="flex flex-row items-start gap-4">
         <Avatar className="h-12 w-12" onClick={handleAvatarClick}>

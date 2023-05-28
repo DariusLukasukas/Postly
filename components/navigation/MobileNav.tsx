@@ -1,7 +1,6 @@
 "use client";
 import { navigation } from "@/lib/navigation";
-import NavItem from "../navigation/NavItem";
-import TweetButton from "./TweetButton";
+import NavItem from "./NavItem";
 
 import { Session } from "next-auth";
 import { useEffect, useState } from "react";
@@ -10,7 +9,7 @@ interface MobileNavProps {
   session: Session | null;
 }
 
-export default function Sidebar({ session }: MobileNavProps) {
+export default function MobileNav({ session }: MobileNavProps) {
   const [isAuthenticated, setIsAuthenticated] = useState(!!session);
 
   useEffect(() => {
@@ -18,7 +17,7 @@ export default function Sidebar({ session }: MobileNavProps) {
   }, [session]);
 
   return (
-    <div className="flex h-full w-full flex-col items-center justify-start text-black">
+    <div className="fixed bottom-0 left-0 right-0 z-50 flex flex-row items-center justify-between border-t-[1px] border-neutral-700 bg-white px-4 dark:bg-neutral-800 md:hidden">
       {navigation.map((item) => {
         if (item.authRequired && !isAuthenticated) {
           return null; // Don't render the item if it requires authentication and the user isn't authenticated
@@ -33,7 +32,6 @@ export default function Sidebar({ session }: MobileNavProps) {
           />
         );
       })}
-      <div className="ml-auto">{session && <TweetButton />}</div>
     </div>
   );
 }

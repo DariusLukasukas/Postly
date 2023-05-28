@@ -1,6 +1,4 @@
 "use client";
-
-import { UserPlus } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,

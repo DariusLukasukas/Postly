@@ -4,7 +4,7 @@ import LetterIcon from "@/components/ui/icons/LetterIcon";
 import SearchIcon from "@/components/ui/icons/SearchIcon";
 import UserIcon from "@/components/ui/icons/UserIcon";
 
-type NavigationItem = {
+export type NavigationItem = {
   label: string;
   icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
   href: string;
@@ -23,21 +23,21 @@ export const navigation: NavigationItem[] = [
   {
     label: "Search ⌘K",
     icon: SearchIcon,
-    href: "/",
+    href: "/search",
     authRequired: false,
     available: false,
   },
   {
     label: "Notifications",
     icon: BellIcon,
-    href: "/",
+    href: "/notifications",
     authRequired: true,
     available: false,
   },
   {
     label: "Replies",
     icon: LetterIcon,
-    href: "/",
+    href: "/replies",
     authRequired: true,
     available: false,
   },

@@ -18,7 +18,7 @@ export default async function PostPage({
   const user = await useCurrentUser();
 
   const [post, session] = await Promise.all([postData, sessionData]);
-  console.log(sessionData);
+
   return (
     <>
       <Header label="Thread" showBackButton={true} />
