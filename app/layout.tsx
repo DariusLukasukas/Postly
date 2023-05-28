@@ -35,7 +35,7 @@ export default async function RootLayout({
                 <div className="sticky left-0 top-0 z-20 hidden h-screen md:col-span-1 md:flex">
                   <Sidebar session={session} />
                 </div>
-                <div className="z-10 col-span-12 pb-14 md:col-span-8 md:pb-0">
+                <div className="z-10 col-span-12 pb-14 md:col-span-8 md:border-x-[1px] md:pb-0">
                   {children}
                 </div>
                 <div className="sticky right-0 top-0 z-0 col-span-3 hidden h-screen md:flex">

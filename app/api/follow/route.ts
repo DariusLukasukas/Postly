@@ -59,7 +59,7 @@ export async function POST(req: Request) {
 }
 
 // UNFOLLOW USING DELETE METHOD WITH QUERY PARAMS, DUE TO NEXT JS request.json() in DELETE ROUTE BUG
-function parseQueryParams(url) {
+function parseQueryParams(url: string) {
   const queryString = url.split("?")[1];
   const queryParams = new URLSearchParams(queryString);
 
@@ -123,59 +123,3 @@ export async function DELETE(req: Request) {
     });
   }
 }
-
-// export async function DELETE(req: Request) {
-//   const { currentUserId, userIdToUnfollow } = await req.json();
-
-//   try {
-//     console.log("currentUserId:", currentUserId);
-//     console.log("userIdToUnfollow:", userIdToUnfollow);
-//     if (
-//       !currentUserId ||
-//       !userIdToUnfollow ||
-//       typeof currentUserId !== "string" ||
-//       typeof userIdToUnfollow !== "string"
-//     ) {
-//       console.log("Invalid ID");
-//       throw new Error("Invalid ID");
-//     }
-
-//     const currentUser = await prisma.user.findUnique({
-//       where: { id: currentUserId },
-//     });
-
-//     if (!currentUser) {
-//       console.log("Invalid current user ID");
-//       throw new Error("Invalid current user ID");
-//     }
-
-//     const userToUnfollow = await prisma.user.findUnique({
-//       where: { id: userIdToUnfollow },
-//     });
-
-//     if (!userToUnfollow) {
-//       console.log("Invalid user ID to unfollow");
-//       throw new Error("Invalid user ID to unfollow");
-//     }
-
-//     // Remove userIdToUnfollow from the currentUser's followingIds
-//     const updatedFollowingIds = (currentUser.followingIds || []).filter(
-//       (id) => id !== userIdToUnfollow
-//     );
-
-//     const updatedUser = await prisma.user.update({
-//       where: {
-//         id: currentUserId,
-//       },
-//       data: {
-//         followingIds: updatedFollowingIds,
-//       },
-//     });
-
-//     return NextResponse.json(updatedUser);
-//   } catch (error: any) {
-//     return new NextResponse(JSON.stringify({ error: error.message }), {
-//       status: 400,
-//     });
-//   }
-// }

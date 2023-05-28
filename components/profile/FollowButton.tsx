@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import useFollow from "@/hooks/useFollow";
+import useFollow from "@/actions/useFollow";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
+import { cn } from "@/lib/utils";
 
 interface FollowButtonProps {
   currentUserId?: string;
@@ -48,13 +49,19 @@ export default function FollowButton({
   return (
     <>
       {loading ? (
-        <Button></Button>
+        <Button size={"sm"}></Button>
       ) : (
         <Button
           onClick={handleClick}
-          className="rounded-full text-sm font-semibold text-neutral-400 hover:text-neutral-300"
+          size={"sm"}
+          className={cn(
+            "rounded-lg text-sm",
+            isFollowing
+              ? "bg-neutral-700 text-neutral-100 hover:bg-neutral-600"
+              : "bg-neutral-50"
+          )}
         >
-          {isFollowing ? "Unfollow" : "Follow"}
+          {isFollowing ? "Following" : "Follow"}
         </Button>
       )}
     </>

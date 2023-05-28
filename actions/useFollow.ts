@@ -4,7 +4,7 @@ export async function followUser(
   currentUserId: string,
   userIdToFollow: string
 ) {
-  const response = await fetch("/api/users/follow", {
+  const response = await fetch("/api/follow", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -25,7 +25,7 @@ export async function unfollowUser(
   userIdToUnfollow: string
 ) {
   const response = await fetch(
-    `/api/users/follow?currentUserId=${currentUserId}&userIdToUnfollow=${userIdToUnfollow}`,
+    `/api/follow?currentUserId=${currentUserId}&userIdToUnfollow=${userIdToUnfollow}`,
     {
       method: "DELETE",
       headers: {
@@ -56,7 +56,7 @@ export async function checkFollowing(
 ) {
   try {
     const response = await fetch(
-      `/api/users/follow/${currentUserId}/${userIdToFollow}`
+      `/api/follow/${currentUserId}/${userIdToFollow}`
     );
     const data = await response.json();
     return data.isFollowing;
