@@ -36,7 +36,7 @@ export default async function UserBio({ userId }: UserBioProps) {
 
   return (
     <div className="pb-4">
-      <div className="flex justify-end py-2">
+      <div className="mr-4 flex justify-end py-2">
         {currentUser?.id === userId && (
           <EditProfileButton currentUser={prepareUserData(currentUser)} />
         )}

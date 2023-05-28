@@ -113,7 +113,7 @@ export default function EdiButton({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className="group relative rounded-lg border border-neutral-100 p-1 dark:border-neutral-700">
+      <DialogTrigger className="group relative rounded-lg border border-neutral-100 p-1.5 dark:border-neutral-700">
         <PencilIcon className="h-5 w-5" />
         <HoverCard label="Edit profile" />
       </DialogTrigger>

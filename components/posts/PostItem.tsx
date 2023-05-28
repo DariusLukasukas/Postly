@@ -109,7 +109,9 @@ export default function PostItem({ data, session }: any) {
             </div>
           </div>
           <div>
-            <div className="mt-1 text-sm font-light">{data.body}</div>
+            <div className="mt-1 text-sm font-light dark:text-neutral-300">
+              {data.body}
+            </div>
           </div>
           <div className="mt-4 flex w-full flex-row items-center justify-between gap-10 px-4">
             <button className="flex cursor-pointer flex-row items-center gap-2 transition hover:text-sky-500">

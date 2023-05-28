@@ -17,12 +17,12 @@ export default function Header({ label, showBackButton }: HeaderProps) {
   }, [router]);
 
   return (
-    <div className="relative z-10 h-14 border-b-[1px] border-neutral-100 pl-6 dark:border-neutral-700">
+    <div className="relative z-10 h-14 border-b-[1px] border-neutral-100 px-4 dark:border-neutral-700">
       <div className="flex h-full flex-row items-center gap-2">
         {showBackButton && (
           <button
             onClick={handleBack}
-            className="z-20 w-14 transition hover:text-opacity-70"
+            className="z-20 ml-2 w-14 transition hover:text-opacity-70"
           >
             <ArrowBack className="h-6 w-6 text-black dark:text-white" />
           </button>
