@@ -1,17 +1,17 @@
 import { prisma } from "@/lib/prismadb";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
-import { authOptions } from "../../auth/[...nextauth]/route";
 
 export async function PUT(req: Request) {
+  const sesion = await getServerSession(authOptions);
+  const userId = sesion?.user?.id;
+
+  if (!sesion) {
+    return new Response("Unauthorized", { status: 403 });
+  }
+
   try {
-    const sesion: any = await getServerSession(authOptions);
-    const userId = sesion?.user?.id;
-
-    if (!sesion) {
-      return new Response("Unauthorized", { status: 403 });
-    }
-
     const body = await req.json();
     const { postId } = body;
 

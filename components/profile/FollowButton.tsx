@@ -49,7 +49,7 @@ export default function FollowButton({
   return (
     <>
       {loading ? (
-        <Button size={"sm"}></Button>
+        <div></div>
       ) : (
         <Button
           onClick={handleClick}
@@ -57,8 +57,8 @@ export default function FollowButton({
           className={cn(
             "rounded-lg text-sm",
             isFollowing
-              ? "bg-neutral-700 text-neutral-100 hover:bg-neutral-600"
-              : "bg-neutral-50"
+              ? "bg-transparent text-black outline outline-neutral-100 hover:bg-white hover:text-black dark:bg-neutral-700"
+              : ""
           )}
         >
           {isFollowing ? "Following" : "Follow"}

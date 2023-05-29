@@ -50,14 +50,34 @@ export default function PostItem({ data, session }: any) {
   );
 
   const handleLikeClick = useCallback(
-    async (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       event.stopPropagation();
 
       if (!session) {
         return toast.error("You must be logged in to like a post");
       }
+
+      try {
+        const res = await fetch(`/api/posts/${data.id}/like`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ postId: data.id }),
+        });
+
+        if (res.ok) {
+          const updatedPost = await res.json();
+          setLikes(updatedPost.likeIds);
+        } else {
+          toast.error("Failed to like the post");
+        }
+      } catch (error) {
+        toast.error("Something went wrong");
+        console.log(error);
+      }
     },
-    [session]
+    [session, data]
   );
 
   const handleDelete = useCallback(async () => {
@@ -122,7 +142,7 @@ export default function PostItem({ data, session }: any) {
               <ReTweet className="h-5 w-5 text-neutral-500" />
             </button>
             <button
-              //   onClick={handleLikeClick}
+              onClick={handleLikeClick}
               className="flex cursor-pointer flex-row items-center gap-2 transition hover:text-red-500"
             >
               <HeartIcon className="h-5 w-5 text-neutral-500" />
