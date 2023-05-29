@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { timeSince } from "@/lib/timeSince";
 import { toast } from "react-hot-toast";
@@ -10,9 +10,11 @@ import PostOperations from "./PostOperations";
 import DialogIcon from "../ui/icons/DialogIcon";
 import HeartIcon from "../ui/icons/HeartIcon";
 import ReTweet from "../ui/icons/ReTweet";
+import { cn } from "@/lib/utils";
 
 export default function PostItem({ data, session }: any) {
   const router = useRouter();
+  const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(data.likeIds);
 
   const userId = session?.user?.id ?? "";
@@ -21,6 +23,14 @@ export default function PostItem({ data, session }: any) {
     () => userId === data.userId,
     [userId, data.userId]
   );
+
+  useEffect(() => {
+    if (session && data.likeIds.includes(session.user.id)) {
+      setLiked(true);
+    } else {
+      setLiked(false);
+    }
+  }, [session, data.likeIds]);
 
   const handleAvatarClick = useCallback(
     (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -69,6 +79,12 @@ export default function PostItem({ data, session }: any) {
         if (res.ok) {
           const updatedPost = await res.json();
           setLikes(updatedPost.likeIds);
+
+          if (liked) {
+            setLiked(false);
+          } else {
+            setLiked(true);
+          }
         } else {
           toast.error("Failed to like the post");
         }
@@ -77,7 +93,7 @@ export default function PostItem({ data, session }: any) {
         console.log(error);
       }
     },
-    [session, data]
+    [session, data, liked]
   );
 
   const handleDelete = useCallback(async () => {
@@ -133,20 +149,23 @@ export default function PostItem({ data, session }: any) {
               {data.body}
             </div>
           </div>
-          <div className="mt-4 flex w-full flex-row items-center justify-between gap-10 px-4">
+          <div className="mt-4 flex w-full flex-row items-center justify-between gap-10 px-4 text-neutral-500">
             <button className="flex cursor-pointer flex-row items-center gap-2 transition hover:text-sky-500">
-              <DialogIcon className="h-5 w-5 text-neutral-500 dark:text-neutral-500" />
-              <div className="text-sm">{data.comments?.length || ""}</div>
+              <DialogIcon className="h-5 w-5" />
+              <div className="text-xs">{data.comments?.length || ""}</div>
             </button>
             <button onClick={() => {}} className="">
-              <ReTweet className="h-5 w-5 text-neutral-500" />
+              <ReTweet className="h-5 w-5" />
             </button>
             <button
               onClick={handleLikeClick}
-              className="flex cursor-pointer flex-row items-center gap-2 transition hover:text-red-500"
+              className={cn(
+                "relative flex cursor-pointer flex-row items-center gap-2 transition hover:text-red-500",
+                liked ? "text-red-500" : ""
+              )}
             >
-              <HeartIcon className="h-5 w-5 text-neutral-500" />
-              <div className="text-sm">
+              <HeartIcon className="h-5 w-5" />
+              <div className="absolute ml-6 text-xs">
                 {likes.length > 0 ? likes.length : ""}
               </div>
             </button>

@@ -1,7 +1,7 @@
 export async function fetchPost(postId?: string) {
   const url = `http://localhost:3000/api/posts/${postId}`;
 
-  const response = await fetch(url);
+  const response = await fetch(url, { next: { revalidate: 0 } });
 
   if (!response.ok) {
     throw new Error("Failed to fetch data");

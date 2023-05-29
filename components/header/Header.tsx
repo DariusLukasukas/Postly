@@ -14,6 +14,7 @@ export default function Header({ label, showBackButton }: HeaderProps) {
 
   const handleBack = useCallback(() => {
     router.back();
+    router.refresh();
   }, [router]);
 
   return (

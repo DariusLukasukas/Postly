@@ -5,7 +5,7 @@ export const fetchPosts = cache(async (userId?: string) => {
     ? `http://localhost:3000/api/users/${userId}/posts`
     : "http://localhost:3000/api/posts";
 
-  const response = await fetch(url);
+  const response = await fetch(url, { next: { revalidate: 0 } });
 
   if (!response.ok) {
     // throw new Error("Failed to fetch data");
