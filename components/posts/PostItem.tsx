@@ -59,6 +59,17 @@ export default function PostItem({ data, session }: any) {
     [router, data]
   );
 
+  const handleRepost = useCallback(
+    async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      event.stopPropagation();
+
+      if (!session) {
+        return toast.error("You must be logged in to repost a post");
+      }
+    },
+    [session]
+  );
+
   const handleLikeClick = useCallback(
     async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       event.stopPropagation();
@@ -129,19 +140,15 @@ export default function PostItem({ data, session }: any) {
         </Avatar>
 
         <div className="flex w-full flex-col">
-          <div className="flex flex-row items-center gap-1">
-            <div className="cursor-pointer text-sm font-medium">
-              {data.user.name}
-            </div>
-            <div className="flex cursor-pointer flex-row gap-1 text-sm font-semibold text-neutral-400">
+          <div className="flex flex-row items-center gap-1 text-sm font-normal">
+            <div className="cursor-pointer">{data.user.name}</div>
+            <div className="flex cursor-pointer flex-row gap-1 text-neutral-400">
               <div className="max-w-[7rem] md:max-w-[12rem]">
                 <div className="block truncate font-normal">
                   @{data.user.username}
                 </div>
               </div>
-              <div className="font-normal">
-                • {timeSince(new Date(data.createdAt))}
-              </div>
+              <div>• {timeSince(new Date(data.createdAt))}</div>
             </div>
           </div>
           <div>
@@ -154,7 +161,7 @@ export default function PostItem({ data, session }: any) {
               <DialogIcon className="h-5 w-5" />
               <div className="text-xs">{data.comments?.length || ""}</div>
             </button>
-            <button onClick={() => {}} className="">
+            <button onClick={handleRepost} className="">
               <ReTweet className="h-5 w-5" />
             </button>
             <button
